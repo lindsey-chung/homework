@@ -1,0 +1,128 @@
+---
+title: "hw03-lindsey-chung.Rmd"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE, fig.path = 'images/')
+```
+# Piping
+
+### 2.1
+
+```{bash team-names}
+
+cut -f 2 -d "," nba2017-roster.csv | tail +2 | sort | uniq > team-names.txt
+
+head -5 team-names.txt
+
+```
+
+### 2.2
+```{bash position-names}
+
+cut -f 3 -d "," nba2017-roster.csv | tail +2 | sort | uniq > position-names.txt
+
+head -5 position-names.txt
+
+```
+
+### 2.3
+
+```{bash experience-counts}
+
+cut -f 7 -d "," nba2017-roster.csv | tail +2 | sort -n | uniq -c > experience-counts.txt
+
+head -5 experience-counts.txt
+
+```
+
+### 2.4
+
+```{bash LAC}
+
+grep "player" nba2017-roster.csv > LAC.csv
+grep "LAC" nba2017-roster.csv >> LAC.csv
+
+cat LAC.csv
+
+```
+
+### 2.5
+
+```{bash LAL-age}
+
+grep "LAL" nba2017-roster.csv | cut -f 6 -d "," | sort | uniq -c
+
+```
+
+### 2.6 
+
+```{bash CLE-num-players}
+
+grep "CLE" nba2017-roster.csv | wc -l
+
+```
+
+### 2.7
+
+```{bash gsw-height-weight}
+
+grep "player" nba2017-roster.csv | cut -f 1,4,5 -d "," > gsw-height-weight.csv
+
+grep "GSW" nba2017-roster.csv | cut -f 1,4,5 -d "," >> gsw-height-weight.csv
+
+cat gsw-height-weight.csv
+
+```
+
+### 2.8
+
+```{bash top10-salaries}
+
+grep "player" nba2017-roster.csv | cut -f 1,8 -d "," > top10-salaries.csv
+
+cut -f 1,8 -d "," nba2017-roster.csv | tail +2 | sort -k 2 -r -n -t "," | head -10 >> top10-salaries.csv
+
+cat top10-salaries.csv
+
+```
+
+# Using Binomial Probability Functions
+
+```{r}
+
+source('code/binomial-functions.R')
+
+bin_probability(trials = 10, success = 3, prob = 1/6)
+
+```
+
+```{r loaded-six}
+
+loaded_six = bin_distribution(trials = 10, prob = 0.25)
+plot(loaded_six)
+
+```
+
+This graph shows the probability of getting each number of sixes when tossing a loaded die 10 times with probability of getting six = 0.25
+
+```{r}
+
+prob_head = 0
+for (i in 4:5) {
+  prob_add = bin_probability(trials = 5, success = i, prob = 0.35)
+  prob_head = prob_head + prob_add
+}
+prob_head
+
+```
+
+```{r loaded-head}
+
+loaded_head = bin_distribution(trials = 15, prob = 0.35)
+plot(loaded_head)
+
+```
+
+This graph shows the probability of getting each number of heads when tossing a loaded coin 15 times with probability of getting heads = 0.35

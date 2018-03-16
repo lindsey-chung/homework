@@ -1,0 +1,1 @@
+This homework practices using bash commands in an Rmd file and redirecting to new files. It also practices making functions using the example of the binomial formula. Finally, it implements these functions in the Rmd file.
