@@ -1,0 +1,93 @@
+---
+title: "Warm Up 1"
+output: html_document
+---
+
+## Game of Thrones: Missandei
+
+> "I am from an island called Naath... when did they take me? I was five years old."
+
+![Missandei in the first episode she appears in](https://vignette.wikia.nocookie.net/gameofthrones/images/1/14/Missandei_season_3_ep_1.jpg/revision/latest?cb=20130401035845)
+
+Category | Missandei
+--- | ---
+Seasons | 3, 4, 5, 6, 7, 8
+First seen | "Valar Dohaeris"
+Appeared in | 34 episodes
+Status | alive
+Origin | Naath, Sothoryos
+Allegiance | House Targaryen (by pledge), Good Masters (formerly, slave)
+Culture | Naathi
+Lovers | Grey Worm
+Portrayed by | Nathalie Emmanuel
+
+
+## Cooking Recipe: Chocolate Olive Oil Cake
+
+![What a beautiful and delicious cake!](https://farm5.staticflickr.com/4468/36906291924_54dfc8fd4e_z.jpg)
+
+#### Ingredients
+###### Cake
+ * 1 1/2 cups all purpose flour
+ * 3/4 cup unsweetened cocoa, any variety, sifted if lumpy
+ * 1 1/2 teaspoon baking soda
+ * 1/2 teaspoon fine sea salt
+ * 3/4 cup granulated sugar
+ * 3/4 cup dark brown sugar
+ * 1/2 cup olive oil
+ * 1 1/2 cups water or coffee
+ * 1 tablespoon cider vinegar or white vinegar
+
+###### Glaze
+ * 3/4 cup semisweet chocolate chips
+ * 2 tablespoons cocoa powder
+ * 3 tablespoons olive oil
+ * 1 tablespoon light corn syrup (for shine)
+ * a pinch or two of flaky sea salt
+ 
+#### Special Baking Materials
+ * 9-inch round cake pan
+ * Parchment paper
+ * Wire cooling rack
+ 
+#### Baking instructions
+###### Make the Cake
+1. Heat oven to 350 degrees F. Line the bottom of the cake pan with a fitted round of parchment paper and coat the bottoms and sides with a nonstick cooking spray
+2. Whisk together flour, cocoa, baking soda, salt and granulated sugar in the bottom of a large mixing bowl. Add brown sugar and olive oil, and whisk to combine. Add water and vinegar and whisk until smooth.
+3. Pour into prepared pan. Bake for 30 to 35 minutes, or until the top is springy and a tester inserted in the center comes out with just a few sticky crumbs (but not wet or loose batter). Cool the cake in the pan on a wire rack for 10 minutes, then cut around it with a knife to ensure it is loosened and flip it out onto a cooling rack to cool the rest of the way.
+
+###### Make the Glaze
+4. Combine chocolate, cocoa powder, olive oil, corn syrup, and salt in a medium bowl and microwave to melt, in 15 to 30 second increments, stirring between each until just melted. Whisk until smooth. Pour over completely cooled cake and use spatula to gently nudge it down the sides.
+
+## Quadratic Equation
+
+Quadratic equations hold the form
+
+\begin{equation}
+ax^2 + bx + c = 0
+\end{equation}
+
+where x represents an unknown, and a, b, and c represent known numbers such that a is not equal to 0.
+
+X can be found using the quadratic formula:  
+\begin{equation}
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{equation}
+
+Here is how the formula is derived:
+
+\begin{equation}
+ax^2 + bx + c = 0 \\ 
+4a^2x^2 + 4abx + 4ac = 0 \\
+4a^2x^2 + 4abx = -4ac \\
+4a^2x^2 + 4abx + b^2 = b^2 - 4ac\\
+(2ax + b)^2 = b^2 - 4ac \\
+2ax + b = \pm \sqrt{b^2 - 4ac} \\
+2ax = -b \pm \sqrt{b^2 -4ac} \\
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{equation}
+
+## Comments and Reflections
+This was a fun homework assignment for me. It was not too challenging, but I definitely feel much more comfortable with markdown than before completing it. This was my first time using markdown, and I love how it makes incorporating different elements of text, images, links, equations, and code easy to do all in one place. One thing that was hard was usint LaTeX. I used some LaTeX in high school, but I had forgotten some things. I also had to learn new things like how to make line breaks. The resources and Google were helpful in finding these things out. I needed some help making equations in markdown. I was using the dollar sign style, but it was printing my printing my dollar signs even though it was coming up as equations when I hovered over them in RStudio. I asked my friend Tianjiao for help, and she showed me the "\start{equation}\end{equation}" way of doing it. The assignment probably took me a few hours. The most time consuming part was definitely trouble shooting.
+
+
