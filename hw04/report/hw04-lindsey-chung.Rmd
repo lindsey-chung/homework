@@ -1,0 +1,137 @@
+---
+title: "hw04-lindsey-chung"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Archives
+
+```{r}
+
+library(readr)
+library(dplyr)
+
+source('../code/archive-functions.R')
+
+raw_data = read_archive('stringr')
+clean_data = clean_archive(raw_data)
+
+png(filename = '../images/stringr-version-sizes.png')
+plot_archive(clean_data)
+dev.off()
+
+write_csv(clean_data, '../data/stringr-archive.csv')
+
+ggplot2_raw = read_archive('ggplot2')
+ggplot2_clean = clean_archive(ggplot2_raw)
+write_csv(ggplot2_clean, '../data/ggplot2-archive.csv')
+
+xml_raw = read_archive('XML')
+xml_clean = clean_archive(xml_raw)
+write_csv(xml_clean, '../data/xml-archive.csv')
+
+knitr_raw = read_archive('knitr')
+knitr_clean = clean_archive(knitr_raw)
+write_csv(knitr_clean, '../data/knitr-archive.csv')
+
+dplyr_raw = read_archive('dplyr')
+dplyr_clean = clean_archive(dplyr_raw)
+write_csv(dplyr_clean, '../data/dplyr-archive.csv')
+
+```
+
+## Plots
+
+```{r}
+
+complete_clean = rbind(ggplot2_clean, dplyr_clean)
+complete_clean = rbind(complete_clean, xml_clean)
+complete_clean = rbind(complete_clean, knitr_clean)
+
+png(filename = '../images/version-sizes.png')
+ggplot(data = group_by(complete_clean, name), aes(x = date, y = size)) +
+  geom_step(aes(color = name)) +
+  labs(y = 'size (kilobytes)', title = 'Timeline of Version Sizes')
+dev.off()
+
+png(filename = '../images/facet-version-sizes.png')
+ggplot(data = group_by(complete_clean, name)) +
+  geom_step(aes(x = date, y = size, color = name)) +
+  facet_wrap( ~ name, scales = 'free') +
+  labs(y = 'size (kilobytes)', title = 'Timelines of Version Sizes')
+dev.off()
+
+```
+
+## Regex Functions
+
+```{r}
+
+source('../code/regex-functions.R')
+
+split_chars('Go Bears!')
+split_chars('Expecto Patronum')
+
+vec <- c('G', 'o', ' ', 'B', 'e', 'a', 'r', 's', '!')
+num_vowels(vec)
+
+count_vowels('The quick brown fox jumps over the lazy dog')
+count_vowels('THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG')
+
+reverse_chars('gattaca')
+reverse_chars('Lumox Maxima')
+
+reverse_words('sentence! this reverse')
+reverse_words('string')
+
+```
+
+## Data "Emotion in Text"
+
+```{r}
+
+dat = read_csv('../data/text-emotion.csv')
+
+dat$chars = str_count(dat$content, '.')
+summary(dat$chars)
+
+ggplot(data = dat) +
+  geom_histogram(aes(x = chars), binwidth = 5, center = 2.5) +
+  labs(x = 'Number of Characters', y = 'Frequency', title = 'Characters per Tweet')
+
+dat$mentions = str_count(dat$content, '@\\w{1,15}')
+
+table(dat$mentions)
+
+ggplot(data = dat) +
+  geom_bar(aes(x = mentions)) +
+  labs(x = 'Mentions', y = 'Frequency', title = 'Number of Mentions')
+
+filter(dat, mentions == 10) %>%
+  select(content)
+
+dat$hashtags_count = str_count(dat$content, '#[:alpha:][:alnum:]+')
+
+table(dat$hashtags_count)
+
+ggplot(data = dat) +
+  geom_bar(aes(x = hashtags_count)) +
+  labs(x = 'Hashtags', y = 'Frequency', title = 'Number of Hashtags')
+
+hashtags = str_extract_all(dat$content, '#[:alpha:][:alnum:]+')
+
+hashtags_nonzero = unlist(lapply(hashtags, function (x) if (length(x) == 0) NULL else x[[1]]))
+
+hashtags_length = str_count(hashtags_nonzero, '.') - 1
+
+mean(hashtags_length)
+
+table(hashtags_length)
+max(table(hashtags_length))
+
+# Mode (most common) length is 4
+
+```
